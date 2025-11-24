@@ -1,0 +1,190 @@
+Q1 What is the role of Startup class?
+
+Ans  Startup class is responsible for configuration related things as below.
+
+It configures the services which are required by the app.
+It defines the app's request handling pipeline as a series of middleware components.
+But You can emit this class and Program.cs file contains all startup code.
+
+
+
+Q2 Describe the Dependency Injection.
+
+Dependency Injection is a Design Pattern that's used as a technique to achieve 
+the Inversion of Control (IoC) between the classes and their dependencies.
+ASP.NET Core comes with a built-in Dependency Injection framework that makes 
+configured services available throughout the application.
+ You can configure the services inside the ConfigureServices method as below.
+
+services.AddScoped();
+
+
+Q3  Explain the request pipeline or middleware pipeline in ASP.NET Core.
+
+A request pipeline or middleware pipeline consists of a sequence of request delegates 
+which are called one after another to perform operations before and after the next delegate.
+
+
+
+Q4 Explain the difference between app.Run and app.Use in ASP.NET Core.
+
+
+app.Use method adds a middleware delegate to the application's request pipeline. 
+When you want to pass the context to the next middleware then prefer app.Use method.
+app.Run method adds a terminal middleware delegate to the application's request pipeline.
+ When you want to terminate the pipeline then prefer to use the app.Run method.
+
+Q5 Describe the Service Lifetimes.
+
+When Services are registered, there is a lifetime for every service. 
+ASP.NET Core provides the following lifetimes.
+
+Transient - Services with transient lifetime are created each time they are requested from service container.
+ So it's best suited for stateless, light weight services.
+Scoped - Services with scoped lifetime are created once per connection or client request. 
+When using scoped service in middleware then inject the service via invoke or invokeAsync method.
+ You should not inject the service via constructor injection as it treats the service behavior like Singleton.
+Singleton - Service with singleton lifetime is created once when first time the service is requested.
+ For subsequent requests same instance is served by service container.
+
+Q6  Explain the Middleware in ASP.NET Core.
+
+The Request handling pipeline is a sequence of middleware components where each component performs
+ the operation on request and either call the next middleware component 
+or terminate the request. When a middleware component terminates the request, 
+it's called Terminal Middleware as It prevents next middleware from processing the request.
+ You can add a middleware component to the pipeline by calling .Use... extension method as below.
+
+    app.UseHttpsRedirection();
+    app.UseStaticFiles();
+    app.UseRouting();
+
+
+Q7 What is Request delegate?
+
+Request delegates handle each HTTP request and are used to build request pipeline.
+ It can configured using Run, Map and Use extension methods. 
+An request delegate can be a in-line as an anonymous method (called in-line middleware) or a reusable class. 
+These classes or in-line methods are called middleware components.
+
+ Q8 What is Host in ASP.NET Core?
+
+Host encapsulates all the resources for the app. On startup, ASP.NET Core application creates the host. 
+The Resources which are encapsulated by the host include:
+
+HTTP Server implementation
+Dependency Injection
+Configuration
+Logging
+Middleware components
+
+
+Q9 What are the extension methods in C#?
+
+Imagine you're playing a video game with a character named "String." 
+This character has some built-in abilities, like jumping and running.
+ But what if you want to give String some new superpowers without changing its original code?
+That's where extension methods come in! They're like magical amulets 
+that you can create to give String (or any other class) new abilities without altering its core structure.
+
+Q10  Life Scope?
+
+AddSingleton()
+AddSingleton() creates a single instance of the service when it is first requested and reuses
+that same instance in all the places where that service is needed.
+
+AddScoped()
+In a scoped service, with every HTTP request, we get a new instance. However, within the same HTTP request, 
+if the service is required in multiple places, like in the view and in the controller,
+ then the same instance is provided for the entire scope of that HTTP request. 
+But every new HTTP request will get a new instance of the service.
+
+AddTransient()
+With a transient service, a new instance is provided every time a service instance is requested whether
+ it is in the scope of the same HTTP request or across different HTTP requests.
+
+Q11 LINQ Extension Methods:-
+First(),FirstOrDefault(),Single(),SingleOrDefault(),ToList(),Count(),Min(),Max(),Last(),LastOrDefault(),Average()
+
+
+Q12 IEnumerable:-
+	IEnumerable exists in the System.Collections namespace.
+	IEnumerable is suitable for querying data from in-memory collections like List, Array and so on.
+	While querying data from the database, IEnumerable executes "select query" on the server-side, 
+	loads data in-memory on the client-side and then filters the data.
+	IEnumerable is beneficial for LINQ to Object and LINQ to XML queries.
+
+Q13 IQuerable:-
+	IQueryable exists in the System.Linq Namespace.
+	IQueryable is suitable for querying data from out-memory (like remote database, service) collections.
+	While querying data from a database, IQueryable executes a "select query" on server-side with all filters.
+	IQueryable is beneficial for LINQ to SQL queries.
+
+Q14 1.DI is a design methodology where in rather than caller creating the instance 
+		its injected by some framework or some other mechanism.
+	2. Inversion of control is a principle where we say focus on your work and other tasks delegate to someone else.
+      3.DI helps to Implement decoupled architecture where you change at one place and changes are reflected at many places.
+      4. Scoped, Transient and singleton define the life time of the dependancy injected object.
+
+
+Q15 Kestrel is a lightweight, cross-platform, and open-source web server for
+ ASP.NET Core that runs on Linux, Windows, and Mac. 
+	It is designed to be fast and scalable, 
+	and it is the preferred web server for all new ASP.NET applications.
+
+	IIS (Internet Information Services), on the other hand, 
+is a web server that is developed and maintained only by Microsoft.
+ 	It is a Windows-specific web server that is not cross-platform.
+
+	One of the main differences between Kestrel and IIS is 
+that Kestrel is a cross-platform server that can run on Linux, Windows, and Mac, 
+      whereas IIS is Windows-specific. 
+	Another essential difference between the two is that Kestrel is fully open-source,
+      whereas IIS is closed-source and developed and maintained only by Microsoft.
+
+Q16 What is the purpose of middleware in ASP.NET Core?
+	Middleware is a powerful tool in .NET Core that allows you to modify incoming requests and outgoing responses.
+ 	It can be used to perform a wide range of tasks such as authentication, logging, compression, and caching.
+
+	In addition to the built-in middleware components that are available in .
+      NET Core (Please check this link for all built-in middleware), 
+	you can also create your own custom middleware components. 
+	Creating custom middleware allows you to add functionality to your application that is specific to your needs.
+
+Q17 There are 3 types of cache available
+
+	In-Memory Cache: The data are cached in the server's memory.
+	Persistent in-process Cache: The data are cached in some file or database.
+	Distributed Cache: The data are cached in a shared cache and multiple processes. Example: Redis cache
+
+Q18 Caching is the technique of storing the data which are frequently used. 
+    Those data can be served faster for any future or subsequent requests by
+    eliminating unnecessary requests to external data sources.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

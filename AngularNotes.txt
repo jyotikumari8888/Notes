@@ -1,0 +1,42 @@
+Q1 what is a service in angular interview questions and answers
+
+   A Service is a class in Angular that provides functionality to other components or services. 
+   It is used to share data or operations across multiple components,or to encapsulate business logic.
+   Services are also used to perform asynchronous operations like HTTP requests or to store application state.
+
+Q2 ANGULAR QUESTION
+
+Angular is a TypeScript-based front-end web application framework. It targets both the browser and the server.
+ Angular is one of the most popular frameworks for UI design today
+
+
+Q3. How does an Angular application work?
+Every Angular app consists of a file named angular.json. This file will contain all the configurations of the app.
+ While building the app, the builder looks at this file to find the entry point of the application. 
+
+
+
+ "build": {
+        "builder": "@angular-devkit/build-angular:browser",
+        "options": {
+          "outputPath": "dist/angular-starter",
+          "index": "src/index.html",
+          "main": "src/main.ts",
+          "polyfills": "src/polyfills.ts",
+          "tsConfig": "tsconfig.app.json",
+          "aot": false,
+          "assets": [
+            "src/favicon.ico",
+            "src/assets"
+          ],
+          "styles": [
+            "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+            "src/style.css"
+          ]
+        }
+      }
+
+Q3 what is Angular?
+
+Ans. Angular is a component Based framework for building stractured, 
+     scalable and single page web application for client side
